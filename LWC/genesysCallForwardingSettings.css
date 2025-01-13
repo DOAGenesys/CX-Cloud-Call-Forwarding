@@ -1,0 +1,21 @@
+.slds-notify_toast {
+    min-width: 100%;
+    margin-bottom: 0.75rem;
+}
+
+.slds-notify_alert {
+    margin-bottom: 0.75rem;
+}
+
+:host {
+    /* Example override for SLDS brand button color */
+    --sds-c-button-brand-color-background: rgb(1, 118, 211);
+    --sds-c-button-brand-color-background-hover: rgb(0, 95, 178);
+    --sds-c-button-brand-color-border: rgb(1, 118, 211);
+    --sds-c-button-brand-color-border-hover: rgb(0, 95, 178);
+}
+
+.reminderText {
+    font-family: "Salesforce Sans", Arial, sans-serif;
+    font-style: italic;
+}
