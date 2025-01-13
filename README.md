@@ -75,7 +75,7 @@ A comprehensive test class (GCCallForwardingTest) is included with:
 - Mock HTTP callout responses
 - Error condition testing
 - Edge case handling
-- Code coverage exceeding 85%
+- Code coverage = 100%
 
 ## Apex Classes
 
@@ -86,7 +86,7 @@ Handles all communication with the Genesys Cloud API, including:
 - Error handling and response parsing
 
 ### GCCallForwardingTest
-Provides comprehensive 100% test coverage for all Apex functionality.
+Provides comprehensive test coverage for all Apex functionality.
 
 ## Limitations
 
