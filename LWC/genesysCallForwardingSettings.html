@@ -1,0 +1,91 @@
+<template>
+    <lightning-card title="Genesys Call Forwarding Settings" icon-name="custom:custom57">
+        <div class="slds-var-p-horizontal_medium">
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+            </template>
+
+            <template if:true={error}>
+                <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+                    <span class="slds-assistive-text">error</span>
+                    <span class="slds-icon_container slds-icon-utility-error slds-m-right_x-small">
+                        <lightning-icon icon-name="utility:error" size="x-small" variant="inverse"></lightning-icon>
+                    </span>
+                    <h2>{error}</h2>
+                    <div class="slds-notify__close">
+                        <button class="slds-button slds-button_icon slds-button_icon-small" title="Close" onclick={clearError}>
+                            <lightning-icon icon-name="utility:close" size="x-small" variant="inverse"></lightning-icon>
+                        </button>
+                    </div>
+                </div>
+            </template>
+
+            <template if:true={showSuccessToast}>
+                <div class="slds-notify slds-notify_toast slds-theme_success" role="alert">
+                    <span class="slds-icon_container slds-icon-utility-success slds-m-right_small">
+                        <lightning-icon icon-name="utility:success" size="small" variant="inverse"></lightning-icon>
+                    </span>
+                    <div class="slds-notify__content">
+                        <h2 class="slds-text-heading_small">Call forwarding settings updated successfully!</h2>
+                    </div>
+                    <div class="slds-notify__close">
+                        <button class="slds-button slds-button_icon slds-button_icon-inverse" title="Close" onclick={clearSuccessToast}>
+                            <lightning-icon icon-name="utility:close" size="small"></lightning-icon>
+                        </button>
+                    </div>
+                </div>
+            </template>
+
+            <div class="slds-form" role="list">
+                <div class="slds-form__row">
+                    <div class="slds-form__item" role="listitem">
+                        <div class="slds-form-element slds-form-element_stacked">
+                            <lightning-input
+                                type="toggle"
+                                label="Enable Call Forwarding"
+                                name="enabled"
+                                checked={settings.enabled}
+                                onchange={handleToggleChange}>
+                            </lightning-input>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-form__row">
+                    <div class="slds-form__item" role="listitem">
+                        <div class="slds-form-element slds-form-element_stacked">
+                            <lightning-input
+                                type="tel"
+                                label="Forward to Phone Number"
+                                name="phoneNumber"
+                                value={settings.phoneNumber}
+                                placeholder="+1234567890"
+                                pattern="^\+[1-9]\d{1,14}$"
+                                message-when-pattern-mismatch="Please enter a valid phone number in E.164 format (e.g., +1234567890)"
+                                required
+                                disabled={isForwardingDisabled}
+                                onchange={handleInputChange}>
+                            </lightning-input>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-form__row">
+                    <div class="slds-form__item" role="listitem">
+                        <div class="slds-form-element slds-form-element_stacked slds-var-m-top_medium">
+                            <lightning-button
+                                variant="brand"
+                                label="Save Settings"
+                                onclick={handleSave}
+                                disabled={isButtonDisabled}>
+                            </lightning-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="reminderText">
+                Reminder: Call forwarding cannot be configured while on-queue, please change your status first if needed
+            </p>
+        </div>
+    </lightning-card>
+</template>
